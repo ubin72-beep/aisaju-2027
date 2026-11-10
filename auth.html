@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>회원가입 / 로그인 - AI 사주 천년지기</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="nav"><a class="logo" href="index.html">AI 사주 <span>천년지기</span></a><nav><a href="index.html">홈</a><a href="chat.html">대화형 사주</a><a href="tojeong.html">토정비결 2027</a></nav><div><span id="who"></span></div></header>
+<main><section><h2>회원가입 / 로그인</h2><p>가입하면 30코인 무료 지급 · 만 14세 미만 가입 불가</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+<div class="card"><h3>회원가입</h3>
+<label>이메일 <input id="su_email" placeholder="you@email.com" style="width:100%"></label><br>
+<label>비밀번호 (8자 이상) <input id="su_pw" type="password" style="width:100%"></label><br>
+<label>이름 <input id="su_name" placeholder="김미화" style="width:100%"></label><br>
+<label>생년월일 <input id="su_birth" type="date" value="1995-05-16" style="width:100%"></label><br>
+<label>태어난 시간 <input id="su_time" type="number" value="12" min="0" max="23" style="width:100%">시</label><br>
+<label>성별 <select id="su_gender"><option value="female">여성</option><option value="male">남성</option></select></label><br>
+<label><input type="checkbox" id="agree_terms"> [필수] 이용약관 동의 <a href="legal/terms.md">보기</a></label><br>
+<label><input type="checkbox" id="agree_privacy"> [필수] 개인정보처리방침 동의 <a href="legal/privacy.md">보기</a></label><br>
+<label><input type="checkbox" id="agree_parent"> [만 19세 미만] 법정대리인 동의 받았어요</label><br>
+<label><input type="checkbox" id="agree_marketing"> [선택] 마케팅 수신 동의</label><br>
+<button class="btn gold" onclick="doSignup()">가입하고 30코인 받기</button><div id="su_msg"></div></div>
+<div class="card"><h3>로그인</h3>
+<label>이메일 <input id="li_email" placeholder="you@email.com" style="width:100%"></label><br>
+<label>비밀번호 <input id="li_pw" type="password" style="width:100%"></label><br>
+<button class="btn gold" onclick="doLogin()">로그인</button><div id="li_msg"></div>
+<p style="font-size:13px;color:#999;">데모 관리자 계정: admin@aisaju1000.com / admin1234! (운영 시 삭제)<br>비밀번호 찾기: 가입 이메일로 재설정 링크 발송 (서버 연동 시)</p>
+<p><a href="index.html">홈으로</a></p></div></div></section></main>
+<script src="js/auth.js"></script><script>
+async function doSignup(){ try{ const u=await Auth.signup({email:document.getElementById('su_email').value, password:document.getElementById('su_pw').value, name:document.getElementById('su_name').value, birthDate:document.getElementById('su_birth').value, birthTime:document.getElementById('su_time').value, gender:document.getElementById('su_gender').value, agreeTerms:document.getElementById('agree_terms').checked, agreePrivacy:document.getElementById('agree_privacy').checked, parentAgree:document.getElementById('agree_parent').checked}); document.getElementById('su_msg').innerHTML='<b>'+u.name+'님 가입 완료!</b> 30코인이 지급됐어요. <a href=chat.html>대화형 사주 시작하기</a>'; }catch(e){ document.getElementById('su_msg').textContent=e.message; } }
+async function doLogin(){ try{ const s=await Auth.login(document.getElementById('li_email').value, document.getElementById('li_pw').value); document.getElementById('li_msg').innerHTML='<b>로그인 완료!</b> '+s.name+'님 환영해요. '+(s.role==='admin'?'<a href=admin.html>관리자 페이지 가기</a>':'<a href=chat.html>대화형 사주 가기</a>'); }catch(e){ document.getElementById('li_msg').textContent=e.message; } }
+</script></body></html>

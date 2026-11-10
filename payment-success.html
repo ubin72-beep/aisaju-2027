@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>결제 승인 중</title><link rel="stylesheet" href="css/style.css"></head><body><main><h2>결제 승인 중...</h2><p>토스 승인 후 코인이 지급됩니다. 잠시만 기다려주세요.</p><div id="msg"></div></main><script>
+(async()=>{ const q=new URLSearchParams(location.search); const paymentKey=q.get('paymentKey'), orderId=q.get('orderId'), amount=Number(q.get('amount'));
+  // 반드시 서버 승인 API로만 승인. 프론트에서 코인 지급 금지.
+  try{ const r=await fetch('/api/payments/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey,orderId,amount})}); const j=await r.json();
+    if(j.ok){ document.getElementById('msg').innerHTML='<b>결제 완료!</b> '+j.coins+'코인이 지급됐어요. <a href=chat.html>대화형 사주 가기</a>'; } else { document.getElementById('msg').textContent='승인 실패: '+(j.error?.message||'서버 확인 필요'); }
+  }catch(e){ document.getElementById('msg').textContent='서버 연결 실패. 고객센터(0502-1909-7788)로 문의하세요.'; }
+})();
+</script></body></html>

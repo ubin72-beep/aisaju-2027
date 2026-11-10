@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 사주 천년지기 - 2027 정미년</title><link rel="stylesheet" href="css/style.css"></head>
+<body><header class="nav"><a class="logo">AI 사주 <span>천년지기</span></a><nav><a href="index.html">홈</a><a href="chat.html">대화형 사주</a><a href="tojeong.html">토정비결 2027</a><a href="admin.html">관리자</a></nav><div class="coins">내 코인 <b data-coins>30코인</b> · <button onclick="document.getElementById('chargeModal').classList.add('open')">충전</button></div></header>
+<main>
+<section class="hero"><p class="eyebrow">2027 丁未年 · 정미년 · 붉은 양띠 해</p><h1>불이 땅에 내려앉는 해,<br>당신의 운이 익어가는 해</h1><p>1000년의 명리학 지혜 + AI. 이제 사주는 읽는 게 아니라 대화하는 거예요.</p><div class="cta"><a class="btn gold" href="chat.html">대화형 사주 시작하기 · 100원부터</a><a class="btn ghost" href="tojeong.html">토정비결 2027 보기</a></div><p class="free">지금 가입하면 30코인 무료 · 심층 질문 1회 무료 체험</p></section>
+<section><h2>내 사주 계산하기 - 만세력</h2><div class="card"><label>생년월일 <input type="date" id="birthDate" value="1995-05-16"></label><label>태어난 시간 <input type="number" id="birthTime" value="12" min="0" max="23">시</label><label>성별 <select id="gender"><option value="female">여성</option><option value="male">남성</option></select></label><button class="btn gold" onclick="calc()">내 사주 보기</button><div id="sajuOut" class="saju-out"></div></div></section>
+<section><h2>요금 - 질문당 100원부터</h2><div class="grid4"><div class="card">가벼운 질문<br><b>1코인 · 100원</b><p>오늘 운세, Yes/No</p></div><div class="card hot">심층 질문<br><b>3코인 · 300원</b><p>이직·연애·재물 시기</p></div><div class="card">정밀 리포트<br><b>10코인 · 1,000원</b><p>월별 분석, 궁합 상세</p></div><div class="card">토정비결 전체<br><b>15코인 · 1,500원</b><p>12개월 + 길일/흉일</p></div></div></section>
+<section><h2>무료 서비스</h2><p>기본 궁합 · 오늘의 운세 · AI 꿈해몽 · 24시간 AI 상담 · 바이오리듬 · 운세 캘린더</p></section>
+<script>function calc(){ const d=document.getElementById('birthDate').value; const t=parseInt(document.getElementById('birthDate')?document.getElementById('birthTime').value:12); const g=document.getElementById('gender').value; const s=Manse.sajuFromBirth({birthDate:d,birthTime:t,gender:g}); state.saju=s; save(); const f=Manse.yearFortune2027(s); document.getElementById('sajuOut').innerHTML='<b>'+s.year.name+' '+s.month.name+' '+s.day.name+' '+s.hour.name+'</b><br>일간: '+s.ilgan+'('+s.ilganOh+') · 오행: '+JSON.stringify(s.ohCount)+'<br>2027 운세: '+f.score+'점 · '+f.key+' · '+f.msg+'<br><a href=chat.html>이 사주로 대화하기 →</a>'; }</script>
+
+<!-- PREMIUM MEMBERSHIP -->
+<section id="membership" class="section membership">
+  <div class="container">
+    <h2 class="section-title">프리미엄 멤버십</h2>
+    <p class="section-sub">단품으로 사면 비싸요. 구독하면 매달 자동으로 받으세요.</p>
+    <div class="pricing-grid">
+      <div class="price-card"><h3>FREE</h3><div class="price">0원</div><ul><li>오늘 운세 1회</li><li>가입 10코인</li><li>가벼운 질문 체험</li></ul><a href="auth.html" class="btn btn-ghost">무료 시작</a></div>
+      <div class="price-card featured"><span class="badge">BEST · 67명 선택</span><h3>GOLD</h3><div class="price">19,900원<span>/월</span></div><ul><li>가벼운 질문 무제한</li><li>월별 정밀 리포트 1개 자동발송</li><li>토정비결 30% 할인</li><li>길일 알림</li></ul><a href="payment-success.html" class="btn btn-gold">GOLD 시작 · 7일 무료체험</a><small>첫 결제 시 +50코인 보너스</small></div>
+      <div class="price-card black"><h3>BLACK</h3><div class="price">49,900원<span>/월</span></div><ul><li>심층 질문 무제한</li><li>프리미엄 1:1 상담 1회</li><li>전 상품 50% 할인</li><li>신규 콘텐츠 선공개</li></ul><a href="payment-success.html" class="btn btn-black">BLACK 시작</a></div>
+    </div>
+    <p class="note">GOLD 67명 = 약 133만원 / BLACK 20명 추가 시 약 232만원 구조. 구독은 언제든 해지 가능, 자동결제 전 사전 고지.</p>
+  </div>
+</section>
+<!-- B2B -->
+<section id="b2b" class="section b2b">
+  <div class="container"><h2 class="section-title">기업 / 제휴 문의 (B2B)</h2><p>결혼정보 궁합 API · 이사 택일 API · 기업 신년 운세 패키지 (1개사 약 100만원) · 인플루언서 제휴 20% 커미션</p>
+  <form id="b2bForm" class="b2b-form"><input name="company" placeholder="회사명" required><input name="email" type="email" placeholder="담당자 이메일" required><select name="type"><option>결혼정보 궁합 API</option><option>이사/택일 API</option><option>기업 신년 운세 패키지</option><option>인플루언서 제휴</option></select><textarea name="msg" placeholder="문의 내용"></textarea><button class="btn btn-gold" type="submit">제휴 문의 보내기</button></form><p id="b2bDone" class="hidden">접수되었습니다. 1영업일 내 연락드립니다.</p></div>
+</section>
+<section><h3>📬 이번 달 리포트 도착</h3><p>매월 1일, 당신의 월별 운세 리포트가 자동 발송돼요. <a href='tojeong.html'>이번 달 리포트 확인 →</a></p></section></main>
+<div id="chargeModal" class="modal"><div class="modal-box"><h3>코인 충전 - 토스페이먼츠</h3><p>가입 축하 30코인 무료 지급 중</p><div class="packs"><button onclick="startToss(5000,50)">5,000원 → 50코인</button><button class="hot" onclick="startToss(10000,110)">10,000원 → 110코인 (+10)</button><button onclick="startToss(20000,240)">20,000원 → 240코인 (+40)</button></div><label>결제수단</label><div class="pay"><span class="sel">토스페이</span><span>카드</span><span>계좌이체</span><span>휴대폰</span></div><p class="note">실제 결제는 서버 승인 API(/api/payments/confirm) 후 코인 지급. 테스트 키로 연동하세요.</p><button onclick="document.getElementById('chargeModal').classList.remove('open')">닫기</button></div></div><div id="toast"></div>
+<script src="js/manse.js"></script><script src="js/app.js"></script><script>renderCoins(); function startToss(won,coins){ alert('토스페이먼츠 결제창 호출 (데모)\n'+won.toLocaleString()+'원 → '+coins+'코인\n서버 승인 후 지급됩니다. server/server.js 참고'); }</script></body></html>
